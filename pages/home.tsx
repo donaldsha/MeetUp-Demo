@@ -2,12 +2,22 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Card from '../components/Card';
+import { useState } from 'react';
+import Dialog from '../components/Dialog';
+import QRCode from 'react-qr-code';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
+	const router = useRouter();
+
+	const [showDialog, setShowDialog] = useState(false);
+	//get origin
+	const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';
+
 	const cards = [
 		{
 			key: 'item-1',
-			title: 'Documentation',
+			title: 'NextJS documentation',
 			description: 'Find in-depth information about Next.js features and API.',
 			path: 'https://nextjs.org/docs',
 		},
@@ -19,14 +29,14 @@ const Home: NextPage = () => {
 		},
 		{
 			key: 'item-3',
-			title: 'Next and tailwind',
+			title: 'NextJS and tailwind',
 			description: 'How to confígure Next with Tailwind step-by-step',
 			path: 'https://tailwindcss.com/docs/guides/nextjs',
 		},
 		{
 			key: 'item-4',
 			title: 'NextJS API',
-			description: 'NextJs API and routes introduction',
+			description: 'NextJS API and routes introduction',
 			path: 'https://nextjs.org/docs/api-routes/introduction',
 		},
 		{
@@ -42,6 +52,18 @@ const Home: NextPage = () => {
 			description: 'Instantly deploy your Next.js site to a public URL with Vercel.',
 			path:
 				'https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app',
+		},
+		{
+			key: 'item-7',
+			title: 'Tailwind components',
+			description: 'Open source Tailwind components from Flowbite.',
+			path: 'https://flowbite.com/docs/getting-started/introduction/',
+		},
+		{
+			key: 'item-8',
+			title: 'Github',
+			description: "The source code of today's demo",
+			path: 'https://github.com/donaldsha/MeetUp-Demo',
 		},
 	];
 
@@ -73,11 +95,23 @@ const Home: NextPage = () => {
 					deployment to Vercel etc.
 				</p>
 
+				{/* <button
+					className='py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
+					onClick={() => setShowDialog(true)}
+				>
+					Show QR
+				</button> */}
+
 				<div className='flex items-center justify-center flex-wrap max-w-3xl'>
 					{cards.map((item) => (
 						<Card key={item.key} path={item.path} title={item.title} description={item.description} />
 					))}
 				</div>
+				<Dialog show={showDialog} title='Lenke til demo' close={() => setShowDialog(!showDialog)}>
+					<div>
+						<QRCode value={`${origin}${router.pathname}`} level='H' size={340}/>
+					</div>
+				</Dialog>
 			</main>
 
 			<footer className='flex flex-1 py-8 px-0 border-t justify-center items-center'>
@@ -96,5 +130,13 @@ const Home: NextPage = () => {
 		</div>
 	);
 };
+
+// Home.getInitialProps = async (context) => { //getServerSideProps
+// 	const { pathname } = context;
+// 	return {props: pathname}
+// };
+interface Props {
+	props: { pathname: string };
+}
 
 export default Home;
