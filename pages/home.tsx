@@ -61,6 +61,12 @@ const Home: NextPage = () => {
 		},
 		{
 			key: 'item-8',
+			title: 'Next vs React',
+			description: 'Which Framework Is Better For your Front-end?',
+			path: 'https://www.ideamotive.co/blog/nextjs-vs-react-which-javascript-framework-is-better-for-your-front-end',
+		},
+		{
+			key: 'item-9',
 			title: 'Github',
 			description: "The source code of today's demo",
 			path: 'https://github.com/donaldsha/MeetUp-Demo',
@@ -107,11 +113,11 @@ const Home: NextPage = () => {
 						<Card key={item.key} path={item.path} title={item.title} description={item.description} />
 					))}
 				</div>
-				<Dialog show={showDialog} title='Lenke til demo' close={() => setShowDialog(!showDialog)}>
+				{/* <Dialog show={showDialog} title='Lenke til demo' close={() => setShowDialog(!showDialog)}>
 					<div>
 						<QRCode value={`${origin}${router.pathname}`} level='H' size={340}/>
 					</div>
-				</Dialog>
+				</Dialog> */}
 			</main>
 
 			<footer className='flex flex-1 py-8 px-0 border-t justify-center items-center'>

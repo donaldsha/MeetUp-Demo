@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and configured with [`Tailwind`](https://tailwindcss.com/docs/guides/nextjs**)
 
 ## Getting Started
 
@@ -8,6 +8,14 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
+```
+
+If you want to run the development server in another port than 3000:
+
+```bash
+yarn dev -p 5000
+# or
+yarn run dev -p 5000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
